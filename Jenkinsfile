@@ -13,8 +13,8 @@ pipeline {
 
   triggers {
     githubPush()
-    // Respaldo: revisa el repo cada 5 minutos por si el webhook no llega
-    pollSCM('H/5 * * * *')
+    // Respaldo: revisa el repo cada 15 minutos por si el webhook no llega
+    pollSCM('H/15 * * * *')
   }
 
   stages {
