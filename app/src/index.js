@@ -29,6 +29,10 @@ app.get('/api/items', (req, res) => {
   res.json(items);
 });
 
+app.get('/api/items2', (req, res) => {
+  res.json(items);
+});
+
 app.get('/api/items/:id', (req, res) => {
   const item = items.find((i) => i.id === Number(req.params.id));
   if (!item) return res.status(404).json({ error: 'Item no encontrado' });
