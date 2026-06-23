@@ -1,11 +1,10 @@
-# Etapa de dependencias: aislada para que el cache de Docker no se invalide
-# cuando solo cambia el codigo fuente (src/), no el package.json.
+
 FROM node:20-alpine AS deps
 WORKDIR /app
 COPY package*.json ./
 RUN npm install --omit=dev
 
-# Etapa final: imagen minima sin herramientas de build, corre como usuario no-root.
+
 FROM node:20-alpine AS runtime
 WORKDIR /app
 ENV NODE_ENV=production

@@ -16,7 +16,6 @@ app.get('/', (req, res) => {
   res.json({ service: SERVICE_NAME, version: VERSION, message: 'Hola desde el microservicio Node.js' });
 });
 
-// Usado por los liveness/readiness probes de Kubernetes y el HEALTHCHECK del Dockerfile.
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'UP' });
 });
@@ -30,7 +29,7 @@ app.get('/api/items', (req, res) => {
 });
 
 app.get('/api/items2', (req, res) => {
-  res.json({items, message: 'Probando automatizacion 3'});
+  res.json({items, message: 'Probando automatizacion 4'});
 });
 
 app.get('/api/items/:id', (req, res) => {
