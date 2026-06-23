@@ -1,0 +1,6 @@
+apiVersion: v2
+name: microservicio-node
+description: Helm chart para el microservicio basico Node.js/Express
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

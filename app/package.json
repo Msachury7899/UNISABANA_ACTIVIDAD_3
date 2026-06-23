@@ -1,0 +1,13 @@
+{
+  "name": "microservicio-node",
+  "version": "1.0.0",
+  "description": "Microservicio basico en Node.js/Express para practica de Docker, Kubernetes, Helm y ArgoCD",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

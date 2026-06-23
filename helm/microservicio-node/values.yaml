@@ -1,0 +1,41 @@
+replicaCount: 1
+
+image:
+  repository: microservicio-node
+  tag: latest
+  pullPolicy: Never
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 3000
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 64Mi
+  limits:
+    cpu: 250m
+    memory: 128Mi
+
+livenessProbe:
+  path: /health
+  initialDelaySeconds: 5
+  periodSeconds: 10
+
+readinessProbe:
+  path: /health
+  initialDelaySeconds: 3
+  periodSeconds: 5
+
+ingress:
+  enabled: false
+  className: nginx
+  host: microservicio-node.local
+  path: /
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 80

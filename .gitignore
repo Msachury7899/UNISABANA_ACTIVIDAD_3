@@ -1,0 +1,11 @@
+node_modules/
+app/node_modules
+jenkins_home/*
+jenkins_home
+jenkins
+npm-debug.log
+.DS_Store
+*.log
+README-ARRANQUE.md
+README-JENKINS.md
+comandos-ejecutados.md

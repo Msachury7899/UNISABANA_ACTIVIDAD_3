@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: microservicio-node-dev
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Msachury7899/UNISABANA_ACTIVIDAD_3.git
+    targetRevision: main
+    path: helm/microservicio-node
+    helm:
+      valueFiles:
+      - values.yaml
+      - values-dev.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: microservicio-dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
