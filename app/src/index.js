@@ -29,7 +29,7 @@ app.get('/api/items', (req, res) => {
 });
 
 app.get('/api/items2', (req, res) => {
-  res.json({items, message: 'Probando automatizacion 5'});
+  res.json({items, message: 'Probando automatizacion 6'});
 });
 
 app.get('/api/items/:id', (req, res) => {
