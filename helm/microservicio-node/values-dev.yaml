@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  tag: "54"
+  tag: "55"
 
 resources:
   requests:
