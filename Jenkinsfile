@@ -25,6 +25,9 @@ pipeline {
     }
 
     stage('Install & Test') {
+      when {
+        not { changelog '.*\\[skip ci\\].*' }
+      }
       steps {
         dir('app') {
           sh 'npm install'
@@ -34,6 +37,9 @@ pipeline {
     }
 
     stage('Build Docker Image') {
+      when {
+        not { changelog '.*\\[skip ci\\].*' }
+      }
       steps {
         dir('app') {
           sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
@@ -45,6 +51,9 @@ pipeline {
     // (montado via /var/run/docker.sock) y se vuelca directo al Docker interno
     // del nodo de minikube, donde el kubelet ya la encuentra sin necesidad de pull.
     stage('Load Image into Minikube') {
+      when {
+        not { changelog '.*\\[skip ci\\].*' }
+      }
       steps {
         sh "docker save ${IMAGE_NAME}:${IMAGE_TAG} | docker exec -i ${MINIKUBE_NODE} docker load"
       }
@@ -53,6 +62,9 @@ pipeline {
     // Este commit es lo que ArgoCD detecta para re-sincronizar el Deployment:
     // Jenkins no llama a kubectl/helm directamente, solo actualiza el repo (GitOps).
     stage('Update Helm values (GitOps)') {
+      when {
+        not { changelog '.*\\[skip ci\\].*' }
+      }
       steps {
         withCredentials([usernamePassword(credentialsId: 'github-credentials', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_TOKEN')]) {
           sh """
